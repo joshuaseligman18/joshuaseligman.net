@@ -16,7 +16,7 @@ showRecent = true
 [author]
 name = 'Josh Seligman'
 image = 'img/author.jpg'
-headline = 'Software Engineer and Student'
+headline = 'Software Engineer'
 links = [
     { 'github' = 'https://github.com/joshuaseligman18' },
     { 'linkedin' = 'https://www.linkedin.com/in/joshuaseligman18' },
