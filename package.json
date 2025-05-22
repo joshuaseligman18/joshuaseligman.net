@@ -1,0 +1,11 @@
+{
+    "scripts": {
+        "build:css": "npx @tailwindcss/cli -i assets/css/style-in.css -o assets/css/style-out.css",
+        "watch:css": "npx @tailwindcss/cli -i assets/css/style-in.css -o assets/css/style-out.css --watch"
+    },
+    "devDependencies": {
+        "@tailwindcss/cli": "^4.1.6",
+        "daisyui":"^5.0.35",
+        "tailwindcss":"^4.1.6"
+    }
+}

@@ -1,0 +1,46 @@
+baseURL = 'https://joshuaseligman.net'
+languageCode = 'en-us'
+title = 'Joshua Seligman'
+
+[menus]
+    [[menus.navbar]]
+        name = 'Home'
+        pageRef = '/'
+        weight = 10
+        [menus.navbar.params]
+            external = false
+
+    [[menus.navbar]]
+        name = 'Resume'
+        pageRef = '/resume'
+        weight = 20
+        [menus.navbar.params]
+            external = false
+
+    [[menus.navbar]]
+        name = 'GitHub'
+        url = 'https://github.com/joshuaseligman18'
+        weight = 30
+        [menus.navbar.params]
+            external = true
+
+    [[menus.navbar]]
+        name = 'LinkedIn'
+        url = 'https://www.linkedin.com/in/joshuaseligman18'
+        weight = 40
+        [menus.navbar.params]
+            external = true
+
+[params]
+    [params.social]
+        github = 'https://github.com/joshuaseligman18'
+        linkedin = 'https://www.linkedin.com/in/joshuaseligman18'
+        email = 'joshuaseligman18@gmail.com'
+
+[module]
+    [module.hugoVersion]
+        extended = false
+        min = '0.146.0'
+
+[frontmatter]
+    date = ['date', 'start']
