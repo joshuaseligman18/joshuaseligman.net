@@ -1,0 +1,74 @@
+{{ define "main" }}
+    <div class="flex flex-col md:flex-row space-x-5 py-5">
+        <div class="space-y-5 lg:max-w-1/3">
+            <div>
+                <h1 class="text-2xl text-center font-bold">Resume</h1>
+                {{- with resources.Get "misc/Joshua Seligman Resume.pdf" }}
+                    <p>
+                        Provided on this page are the education and work experience sections of my resume.
+                        All project work and code is public on my
+                        <a href="{{ $.Site.Params.Social.Github }}" target="_blank" class="link">GitHub profile</a>.
+                        A complete downloadable copy of my resume can be found
+                        <a href="{{ .RelPermalink }}" target="_blank" class="link">here</a>.
+                    </p>
+                {{- end }}
+            </div>
+            <div>
+                <h1 class="text-xl text-center font-bold">Education</h1>
+                <ul class="timeline timeline-compact timeline-vertical">
+                    {{ range where .Pages.ByDate.Reverse ".Params.Type" "school" }}
+                        {{ $page := . }}
+                        <li>
+                            {{ $startDate := (time.AsTime .Date).Format "2006" }}
+                            {{ $endDate := "Present" }}
+                            {{ if .Params.End }}
+                                {{ $endDate = (time.AsTime .Params.End).Format "2006" }}
+                            {{ end }}
+                            <div class="timeline-end timeline-box w-full border-base-content/10">
+                                {{- with resources.Get .Params.Image }}
+                                    <img
+                                        src="{{ .RelPermalink }}"
+                                        class="block w-50 m-auto"
+                                        alt="{{ $page.Params.Company }}"
+                                    >
+                                {{- end }}
+                                <h2 class="text-center font-bold text-lg">{{ .Title }} ({{ $startDate }} - {{ $endDate }})</h2>
+                            </div>
+                        </li>
+                    {{ end }}
+                </ul>
+            </div>
+        </div>
+        <div class="divider lg:divider-horizontal"></div>
+        <div>
+            <h1 class="text-xl text-center font-bold">Work</h1>
+            <ul class="timeline timeline-compact timeline-vertical">
+                {{ range where .Pages.ByDate.Reverse ".Params.Type" "work" }}
+                    {{ $page := . }}
+                    <li>
+                        <div class="timeline-end timeline-box w-full border-base-content/10">
+                            {{- with resources.Get .Params.Image }}
+                                <img
+                                    src="{{ .RelPermalink }}"
+                                    class="block w-50 m-auto"
+                                    alt="{{ $page.Params.Company }}"
+                                >
+                            {{- end }}
+                            {{ $startDate := (time.AsTime .Date).Format "January 2006" }}
+                            {{ $endDate := "Present" }}
+                            {{ if .Params.End }}
+                                {{ $endDate = (time.AsTime .Params.End).Format "January 2006" }}
+                            {{ end }}
+                            <h2 class="text-center font-bold text-lg">{{ .Title }} ({{ $startDate }} - {{ $endDate }})</h2>
+                            <ul class="list-disc space-y-1 px-3">
+                                {{- range .Params.Bullets }}
+                                    <li class="text-md">{{ . }}</li>
+                                {{- end }}
+                            </ul>
+                        </div>
+                    </li>
+                {{ end }}
+            </ul>
+        </div>
+    </div>
+{{ end }}

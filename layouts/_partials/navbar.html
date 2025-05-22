@@ -1,0 +1,68 @@
+<div class="navbar bg-base-100 shadow-sm">
+    <div class="navbar-start">
+        <div class="dropdown">
+            <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="24px"
+                    viewBox="0 -960 960 960"
+                    width="24px"
+                    fill="currentColor"
+                >
+                    <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z" />
+                </svg>
+            </div>
+            <ul
+                tabindex="0"
+                class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+            >
+                {{- with index site.Menus "navbar" }}
+                    {{- range after 1 . }}
+                        <li>
+                            <a
+                                href={{ or .PageRef .URL }}
+                                {{ with .Params.External }}
+                                    {{ if . }}
+                                        target="_blank"
+                                    {{ end }}
+                                {{ end }}
+                            >
+                                {{ .Name }}
+                            </a>
+                        </li>
+                    {{- end }}
+                {{- end }}
+            </ul>
+        </div> 
+        <ul class="menu menu-horizontal">
+            {{- with index site.Menus "navbar" }}
+                {{ $homeLink := index . 0 }}
+                <li class="font-bold">
+                    <a href={{ $homeLink.PageRef }}>
+                        {{ site.Title }}
+                    </a>
+                </li>
+            {{- end }}
+        </ul>
+    </div>
+    <div class="navbar-end hidden lg:flex">
+        <ul class="menu menu-horizontal px-1">
+            {{- with index site.Menus "navbar" }}
+                {{- range after 1 . }}
+                    <li>
+                        <a
+                            href={{ or .PageRef .URL }}
+                            {{ with .Params.External }}
+                                {{ if . }}
+                                    target="_blank"
+                                {{ end }}
+                            {{ end }}
+                        >
+                            {{ .Name }}
+                        </a>
+                    </li>
+                {{- end }}
+            {{- end }}
+        </ul>
+    </div>
+</div>
