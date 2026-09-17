@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: github-pages
-      url: joshuaseligman.net
+      url: https://joshuaseligman.net
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
     steps:
@@ -28,7 +28,7 @@ jobs:
           mise run init
           mise run build
 
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: ./public
 
