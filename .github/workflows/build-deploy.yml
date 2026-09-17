@@ -5,6 +5,11 @@ on:
     branches:
       - main
 
+permissions:
+  contents: read
+  id-token: write
+  pages: write
+
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
@@ -20,11 +25,8 @@ jobs:
           mise run init
           mise run build
 
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v4
-        if: ${{ github.ref == 'refs/heads/main' }}
+      - uses: actions/upload-pages-artifact@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: gh-pages
-          publish_dir: ./public
+          path: ./public
 
+      - uses: actions/deploy-pages@v5
