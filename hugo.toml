@@ -40,7 +40,7 @@ title = 'Joshua Seligman'
 [module]
     [module.hugoVersion]
         extended = false
-        min = '0.146.0'
+        min = '0.165.0'
 
 [frontmatter]
     date = ['date', 'start']

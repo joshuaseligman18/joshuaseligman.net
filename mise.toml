@@ -1,0 +1,28 @@
+[tools]
+"hugo" = "0.165.0"
+"node" = "latest"
+
+[tasks.init]
+description = "Set up local dev env"
+run = "npm ci"
+
+[tasks.clean]
+description = "Clean public folder"
+run = "rm -rf public"
+
+[tasks.web]
+description = "Run web server"
+depends = ["clean"]
+run = "hugo server --disableFastRender"
+
+[tasks.css]
+description = "Builds CSS in watch mode"
+run = "npm run watch:css"
+
+[tasks.build]
+description = "Build minified web bundle"
+depends = ["clean"]
+run = [
+    "npm run build:css",
+    "hugo --minify"
+]
